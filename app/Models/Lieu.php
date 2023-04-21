@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Lieu extends Model
 {
     use HasFactory;
+
+    protected $table = 'lieu';
+    protected $primaryKey = 'key_lieu';
 }
