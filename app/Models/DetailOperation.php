@@ -16,12 +16,12 @@ class DetailOperation extends Model
     const UPDATED_AT = 'date_modif';
     public function operationDon()
     {
-        return $this->belongsTo(OperationDon::class);
+        return $this->belongsTo(OperationDon::class,"key_operation","key_operation");
     }
 
     public function donneur()
     {
-        return $this->belongsTo(Tiers::class);
+        return $this->belongsTo(Tiers::class,"key_tiers","key_tiers");
     }
 
 }

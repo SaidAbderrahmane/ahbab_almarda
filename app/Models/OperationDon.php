@@ -12,14 +12,14 @@ class OperationDon extends Model
     protected $table = 'operation_don';
     protected $primaryKey = 'key_operation';
 
-    public function operationDon()
+    public function location()
     {
-        return $this->belongsTo(OperationDon::class);
+        return $this->belongsTo(Lieu::class,'key_lieu','key_lieu');
     }
 
     public function detailOperation()
     {
 
-        return $this->hasMany(DetailOperation::class);
+        return $this->hasMany(DetailOperation::class,'key_operation','key_operation');
     }
 }

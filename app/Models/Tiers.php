@@ -13,8 +13,8 @@ class Tiers extends Model
     protected $table = 'tiers';
     protected $primaryKey = 'key_tiers';
 
-    public function operationDon()
+    public function operationsDon()
     {
-        return $this->hasMany(DetailOperation::class);
+        return $this->hasMany(DetailOperation::class,"key_tiers","key_tiers");
     }
 }

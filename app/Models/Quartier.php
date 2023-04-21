@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Quartier extends Model
 {
     use HasFactory;
+
+    
+    protected $table = 'quartier';
+    protected $primaryKey = 'key_quartier';
+
 }
