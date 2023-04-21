@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tiers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TiersController extends Controller
 {
@@ -12,7 +13,9 @@ class TiersController extends Controller
      */
     public function index()
     {
-        //
+        $donors = Tiers::all()->toQuery()->where('sexe','=','F')->paginate(30);
+        return view('pages.donors.donors',['donors' => $donors]);
+
     }
 
     /**
@@ -20,7 +23,8 @@ class TiersController extends Controller
      */
     public function create()
     {
-        //
+        $donors = Tiers::all()->toQuery()->paginate(30);
+        return view('pages.donors.donors',['donors' => $donors]);
     }
 
     /**

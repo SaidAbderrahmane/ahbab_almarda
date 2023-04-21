@@ -12,7 +12,8 @@ class OperationDonController extends Controller
      */
     public function index()
     {
-        //
+        $compaigns = OperationDon::all()->toQuery()->orderBy("num_operation")->paginate(30);
+        return view('pages.compaigns.compaigns',['compaigns' => $compaigns]);
     }
 
     /**
@@ -34,9 +35,12 @@ class OperationDonController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OperationDon $operationDon)
-    {
-        //
+    public function show($id)
+    {   
+        $compaign = OperationDon::all()->firstWhere("key_operation","=",$id);
+        $compaign_detail = $compaign->detailOperation->toQuery()->paginate(50);
+        $response =['compaign' => $compaign,'compaign_detail'=>$compaign_detail];
+        return view('pages.compaign-detail.compaign-detail',$response);
     }
 
     /**
