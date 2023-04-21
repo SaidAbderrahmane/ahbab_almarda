@@ -12,7 +12,8 @@ class LieuController extends Controller
      */
     public function index()
     {
-        //
+        $locations = Lieu::all();
+        return view('pages.locations.locations',['locations' => $locations]);
     }
 
     /**
