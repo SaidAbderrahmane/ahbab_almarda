@@ -1,11 +1,52 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+    <div class="grid grid-cols-3 gap-4 mb-4">
+        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center h-24 rounded bg-gray-50 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+    </div>
+    <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+    </div>
+    <div class="flex items-center justify-center h-48 mb-4 rounded bg-gray-50 dark:bg-gray-800">
+        <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+        <div class="flex items-center justify-center rounded bg-gray-50 h-28 dark:bg-gray-800">
+            <p class="text-2xl text-gray-400 dark:text-gray-500">+</p>
+        </div>
+    </div>
+</x-app-layout>
 
-    <nav class="flex" aria-label="Breadcrumb">
+{{-- <nav class="flex" aria-label="Breadcrumb">
         <ol class="inline-flex items-center space-x-1 md:space-x-3">
           <li class="inline-flex items-center">
             <a href="#" class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white">
@@ -26,6 +67,4 @@
             </div>
           </li>
         </ol>
-      </nav>
-      
-</x-app-layout>
+      </nav> --}}
