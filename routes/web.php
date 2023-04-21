@@ -1,6 +1,10 @@
 <?php
 
+use App\Http\Controllers\AghermeController;
+use App\Http\Controllers\LieuController;
+use App\Http\Controllers\OperationDonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TiersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,28 +18,56 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home.home');
-})->name('home');
-Route::get('/contact', function () {
-    return view('pages.contact.contact');
-})->name('contact');
-Route::get('/about', function () {
-    return view('pages.about.about');
-})->name('about');
-
 Route::get('/dashboard', function () {
     return view('pages.dashboard.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+      return redirect()->route('dashboard');
+    });
+
+    //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::get('/donors', [ProfileController::class, 'edit'])->name('donors');
-    Route::get('/compaigns', [ProfileController::class, 'edit'])->name('compaigns');
+    //donors
+    Route::get('/donors', [TiersController::class, 'index'])->name('donors');
+    Route::post('/donors/store', [TiersController::class, 'store'])->name('donors.store');
+    Route::put('/donors/{id}', [TiersController::class, 'update'])->name('donors.update');
+
+    //agherme
+    Route::get('/aghermes', [AghermeController::class, 'index'])->name('aghermes');
+    Route::post('/aghermes/store', [AghermeController::class, 'store'])->name('aghermes.store');
+    Route::patch('/aghermes/{id}', [AghermeController::class, 'update'])->name('aghermes.update');
+    Route::get('/aghermes/{id}', [AghermeController::class, 'getAghermeById'])->name('aghermes.id');
+    Route::delete('/aghermes/{id}/delete', [AghermeController::class, 'destroy'])->name('aghermes.destroy');
+
+    //location
+    Route::get('/locations', [LieuController::class, 'index'])->name('locations');
+    Route::post('/locations/store', [LieuController::class, 'store'])->name('locations.store');
+    Route::put('/locations/{id}', [LieuController::class, 'update'])->name('locations.update');
+
+    //compaign
+    Route::get('/compaigns', [OperationDonController::class, 'index'])->name('compaigns');
+    Route::post('/compaigns/store', [OperationDonController::class, 'store'])->name('compaign.store');
+    Route::get('/compaigns/{id}', [OperationDonController::class, 'show'])->name('compaign-details');
+    Route::put('/compaigns/{id}', [OperationDonController::class, 'update'])->name('compaign.update');
     
+});
+
+Route::middleware('guest')->group(function ()
+{
+    Route::get('/', function () {
+        return view('pages.home.home');
+    })->name('home');
+    Route::get('/contact', function () {
+        return view('pages.contact.contact');
+    })->name('contact');
+    Route::get('/about', function () {
+        return view('pages.about.about');
+    })->name('about');
 });
 
 require __DIR__.'/auth.php';
