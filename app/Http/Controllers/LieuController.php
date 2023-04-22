@@ -13,7 +13,7 @@ class LieuController extends Controller
     public function index()
     {
         $locations = Lieu::all();
-        return view('pages.locations.locations',['locations' => $locations]);
+        return view('pages.locations.locations', ['locations' => $locations]);
     }
 
     /**
@@ -29,7 +29,18 @@ class LieuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate(
+            [
+                'nom_lieu' => 'required',
+            ]
+        );
+        Lieu::create(
+            [
+                'nom_lieu' => $request->input('nom_lieu'),
+            ]
+        );
+
+        return redirect()->back()->with('success','Location created successfully');
     }
 
     /**
@@ -38,6 +49,12 @@ class LieuController extends Controller
     public function show(Lieu $lieu)
     {
         //
+    }
+
+    public function getLocationById($id)
+    {
+        $location = Lieu::find($id);
+        return response()->json(['data' => $location]);
     }
 
     /**
@@ -51,16 +68,30 @@ class LieuController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lieu $lieu)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'key_lieu' => 'required',
+            'nom_lieu' => 'required'
+        ]);
+
+        $location = Lieu::find($id);
+        $location->update(
+            [
+                'key_lieu' => $request->input('key_lieu'),
+                'nom_lieu' => $request->input('nom_lieu'),
+            ]
+        );
+
+        return redirect()->back()->with('success', 'Location updated successfully!');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Lieu $lieu)
+    public function destroy($id)
     {
-        //
+        Lieu::destroy($id);
+        return redirect()->back()->with('success', 'Location deleted successfully!');
     }
 }
