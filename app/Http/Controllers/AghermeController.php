@@ -13,7 +13,7 @@ class AghermeController extends Controller
     public function index()
     {
         $aghermes = Agherme::all();
-        return view('pages.aghermes.aghermes', ['aghermes' => $aghermes])->with('error', 'Property is updated .');
+        return view('pages.aghermes.aghermes', ['aghermes' => $aghermes]);
     }
 
     /**

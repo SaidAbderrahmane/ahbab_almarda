@@ -11,4 +11,7 @@ class Lieu extends Model
 
     protected $table = 'lieu';
     protected $primaryKey = 'key_lieu';
+
+    public $timestamps = false;
+    public $fillable =['nom_lieu'];
 }

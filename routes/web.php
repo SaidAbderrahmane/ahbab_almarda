@@ -35,7 +35,9 @@ Route::middleware('auth')->group(function () {
     //donors
     Route::get('/donors', [TiersController::class, 'index'])->name('donors');
     Route::post('/donors/store', [TiersController::class, 'store'])->name('donors.store');
-    Route::put('/donors/{id}', [TiersController::class, 'update'])->name('donors.update');
+    Route::patch('/donors/{id}', [TiersController::class, 'update'])->name('donors.update');
+    Route::get('/donors/{id}', [TiersController::class, 'getDonorById'])->name('donors.id');
+    Route::delete('/donors/{id}/delete', [TiersController::class, 'destroy'])->name('donors.destroy');
 
     //agherme
     Route::get('/aghermes', [AghermeController::class, 'index'])->name('aghermes');
@@ -47,7 +49,9 @@ Route::middleware('auth')->group(function () {
     //location
     Route::get('/locations', [LieuController::class, 'index'])->name('locations');
     Route::post('/locations/store', [LieuController::class, 'store'])->name('locations.store');
-    Route::put('/locations/{id}', [LieuController::class, 'update'])->name('locations.update');
+    Route::patch('/locations/{id}', [LieuController::class, 'update'])->name('locations.update');
+    Route::get('/locations/{id}', [LieuController::class, 'getLocationById'])->name('locations.id');
+    Route::delete('/locations/{id}/delete', [LieuController::class, 'destroy'])->name('locations.destroy');
 
     //compaign
     Route::get('/compaigns', [OperationDonController::class, 'index'])->name('compaigns');

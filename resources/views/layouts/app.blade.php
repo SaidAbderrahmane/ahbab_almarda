@@ -15,7 +15,7 @@
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @if (isset($scripts))
-    {{ $scripts }}
+        {{ $scripts }}
     @endif
 </head>
 
@@ -34,7 +34,6 @@
                         </div>
                     </header>
                 @endif
-
                 <!-- Page Content -->
                 <main>
                     {{ $slot }}
