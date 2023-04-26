@@ -55,9 +55,13 @@ Route::middleware('auth')->group(function () {
 
     //compaign
     Route::get('/compaigns', [OperationDonController::class, 'index'])->name('compaigns');
-    Route::post('/compaigns/store', [OperationDonController::class, 'store'])->name('compaign.store');
+    Route::post('/compaigns/store', [OperationDonController::class, 'store'])->name('compaigns.store');
     Route::get('/compaigns/{id}', [OperationDonController::class, 'show'])->name('compaign-details');
-    Route::put('/compaigns/{id}', [OperationDonController::class, 'update'])->name('compaign.update');
+    Route::patch('/compaigns/{id}', [OperationDonController::class, 'update'])->name('compaigns.update');
+    Route::get('/compaigns/{id}/get', [OperationDonController::class, 'getCompaignById'])->name('compaigns.id');
+    Route::delete('/compaigns/{id}/delete', [OperationDonController::class, 'destroy'])->name('compaigns.destroy');
+
+
     
 });
 

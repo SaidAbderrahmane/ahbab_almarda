@@ -1,18 +1,18 @@
 
-    <!-- Edit User Modal -->
+    <!-- Edit Compaign Modal -->
     <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
-        id="edit-user-modal">
+        id="edit-compaign-modal">
         <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
             <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow dark:bg-gray-800">
                 <!-- Modal header -->
                 <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
                     <h3 class="text-xl font-semibold dark:text-white">
-                        Edit user
+                        Edit compaign
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-700 dark:hover:text-white"
-                        data-modal-toggle="edit-user-modal">
+                        data-modal-toggle="edit-compaign-modal">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -23,61 +23,71 @@
                 </div>
                 <!-- Modal body -->
                 <div class="p-6 space-y-6">
-                    <form action="#">
+                    <form action="" method="POST" enctype="multipart/form-data">
+                        @method('patch')
+                        @csrf
+                        <input type="hidden" name="key_operation" id="key_operation"/>
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="first-name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First
-                                    Name</label>
-                                <input type="text" name="first-name" value="Bonnie" id="first-name"
+                                <label for="nom_operation"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Compaign name') }}
+                                </label>
+                                <input type="text" name="nom_operation" id="nom_operation"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Bonnie" required>
+                                    placeholder="Operation name" required>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="last-name"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last
-                                    Name</label>
-                                <input type="text" name="last-name" value="Green" id="last-name"
+                                <label for="num_operation"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Compaign number') }}</label>
+                                <input type="number" name="num_operation" id="num_operation"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="Green" required>
+                                    required>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="email"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" name="email" value="bonnie@flowbite.com" id="email"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="example@company.com" required>
+                                <label for="date_operation"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Compaign date') }}</label>
+                                <div class="relative max-w-sm">
+                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                        <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400"
+                                            fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd"
+                                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                                clip-rule="evenodd"></path>
+                                        </svg>
+                                    </div>
+                                    <input datepicker datepicker-autohide type="text" id="date_operation"
+                                        name="date_operation"
+                                        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                        placeholder="Select date" required>
+                                </div>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="position"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Position</label>
-                                <input type="text" name="position" value="React Developer" id="position"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="e.g. React developer" required>
+                                <label for="key_lieu"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Location') }}</label>
+                                <select name="key_lieu" id="key_lieu"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>{{ __('Location') }}</option>
+                                    @foreach ($locations as $item)
+                                        <option value="{{ $item->key_lieu }}">{{ $item->nom_lieu }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="current-password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Current
-                                    Password</label>
-                                <input type="password" name="current-password" value="••••••••"
-                                    id="current-password"
-                                    class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="••••••••" required>
+                                <label for="genre"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Genre') }}</label>
+                                <select name="genre" id="genre"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option selected>{{ __('Sexe') }}</option>
+                                    <option value="H">{{ __('Male') }}</option>
+                                    <option value="F">{{ __('Femelle') }}</option>
+                                </select>
                             </div>
                             <div class="col-span-6 sm:col-span-3">
-                                <label for="new-password"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">New
-                                    Password</label>
-                                <input type="password" name="new-password" value="••••••••" id="new-password"
+                                <label for="hopital"
+                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Hospital') }}</label>
+                                <input type="text" name="hopital" id="hopital"
                                     class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="••••••••" required>
-                            </div>
-                            <div class="col-span-6">
-                                <label for="biography"
-                                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Biography</label>
-                                <textarea id="biography" rows="4"
-                                    class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                    placeholder="👨‍💻Full-stack web developer. Open-source contributor.">👨‍💻Full-stack web developer. Open-source contributor.</textarea>
+                                    required>
                             </div>
                         </div>
                 </div>
