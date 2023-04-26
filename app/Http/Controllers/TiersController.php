@@ -92,7 +92,6 @@ class TiersController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'key_tiers' => 'key_tiers',
             'nom_prenom' => 'required',
             'pere' => 'required',
             'grand_pere' => 'required',
@@ -100,9 +99,7 @@ class TiersController extends Controller
             'adresse' => 'required',
             'date_naissance' => 'required',
             'key_agherme' => 'required',
-            'key_quartier' => 'required',
-            'code_barres' => 'required',
-            'sexe' => 'required',
+            'sexe' => ['required',Rule::in(['H','F'])],
         ]);
 
         $donor = Tiers::find($id);
@@ -114,9 +111,8 @@ class TiersController extends Controller
                 'grand_pere' => $request->input('grand_pere'),
                 'groupage' => $request->input('groupage'),
                 'adresse' => $request->input('adresse'),
-                'date_naissance' => $request->input('date_naissance'),
+                'date_naissance' => date('Y-m-d', strtotime($request->input('date_naissance'))),
                 'key_agherme' => $request->input('key_agherme'),
-                'key_quartier' => $request->input('key_quartier'),
                 'code_barres' => $request->input('code_barres'),
                 'sexe' => $request->input('sexe'),
                 'key_tiers_type' => 2
