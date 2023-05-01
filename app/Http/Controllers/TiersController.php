@@ -7,6 +7,8 @@ use App\Models\Tiers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class TiersController extends Controller
@@ -18,7 +20,7 @@ class TiersController extends Controller
     {
         $donors = Tiers::all()->toQuery()->where('sexe', '=', 'F')->paginate(30);
         $aghermes = Agherme::all();
-        return view('pages.donors.donors', ['donors' => $donors, 'aghermes'=>$aghermes]);
+        return view('pages.donors.donors', ['donors' => $donors, 'aghermes' => $aghermes]);
 
     }
 
@@ -53,7 +55,7 @@ class TiersController extends Controller
                 'grand_pere' => $request->input('grand_pere'),
                 'groupage' => $request->input('groupage'),
                 'adresse' => $request->input('adresse'),
-                'date_naissance' =>date('Y-m-d', strtotime($request->input('date_naissance'))),
+                'date_naissance' => date('Y-m-d', strtotime($request->input('date_naissance'))),
                 'key_agherme' => $request->input('key_agherme'),
                 'code_barres' => $request->input('code_barres'),
                 'sexe' => $request->input('sexe'),
@@ -78,6 +80,26 @@ class TiersController extends Controller
         $donor = Tiers::find($id);
         return response()->json(['data' => $donor]);
     }
+
+    public function getDonors(Request $request)
+    {
+        $q = $request['q'];
+        if($q){
+            $donors = Tiers::all()->toQuery()->where('nom_prenom', 'like', "%$q%")->orWhere('pere', 'like', "%$q%")->paginate(30);
+        }else {
+            $donors = Tiers::all()->sortBy('nom_prenom')->toQuery()->paginate(30);
+        }
+       /*  $utf8Donors = collect([]);
+        foreach ($donors as $donor) {
+            $encoded = json_encode($donor);
+            if (!Str::isJson($encoded)) {
+                Log::warning('Non-UTF-8 donor:', $donor->toArray());
+            } else {
+                $utf8Donors->push($donor);
+            }
+        } */
+        return response()->json($donors);
+    }
     /**
      * Show the form for editing the specified resource.
      */
@@ -99,7 +121,7 @@ class TiersController extends Controller
             'adresse' => 'required',
             'date_naissance' => 'required',
             'key_agherme' => 'required',
-            'sexe' => ['required',Rule::in(['H','F'])],
+            'sexe' => ['required', Rule::in(['H', 'F'])],
         ]);
 
         $donor = Tiers::find($id);

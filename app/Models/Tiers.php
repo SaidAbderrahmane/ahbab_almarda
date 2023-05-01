@@ -15,6 +15,7 @@ class Tiers extends Model
 
     public $timestamps = false;
     protected $guarded = ['key_tiers'];
+    protected $hidden = ['photo'];
     public function operationsDon()
     {
         return $this->hasMany(DetailOperation::class,"key_tiers","key_tiers");

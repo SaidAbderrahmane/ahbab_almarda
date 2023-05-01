@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AghermeController;
+use App\Http\Controllers\DetailOperationController;
 use App\Http\Controllers\LieuController;
 use App\Http\Controllers\OperationDonController;
 use App\Http\Controllers\ProfileController;
@@ -56,12 +57,17 @@ Route::middleware('auth')->group(function () {
     //compaign
     Route::get('/compaigns', [OperationDonController::class, 'index'])->name('compaigns');
     Route::post('/compaigns/store', [OperationDonController::class, 'store'])->name('compaigns.store');
-    Route::get('/compaigns/{id}', [OperationDonController::class, 'show'])->name('compaign-details');
     Route::patch('/compaigns/{id}', [OperationDonController::class, 'update'])->name('compaigns.update');
     Route::get('/compaigns/{id}/get', [OperationDonController::class, 'getCompaignById'])->name('compaigns.id');
     Route::delete('/compaigns/{id}/delete', [OperationDonController::class, 'destroy'])->name('compaigns.destroy');
 
-
+    
+    //compaign-details
+    Route::get('/compaigns/{id}', [OperationDonController::class, 'show'])->name('compaign-details');
+    Route::post('/compaign-details/store', [DetailOperationController::class, 'store'])->name('compaign-details.store');
+    Route::patch('/compaign-details/{id}', [DetailOperationController::class, 'update'])->name('compaign-details.update');
+    Route::get('/compaign-details/{id}/get', [DetailOperationController::class, 'getCompaignDetailsById'])->name('compaign-details.id');
+    Route::delete('/compaign-details/{id}/delete', [DetailOperationController::class, 'destroy'])->name('compaign-details.destroy');
     
 });
 

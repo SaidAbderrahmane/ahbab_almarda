@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AghermeController;
+use App\Http\Controllers\TiersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::get('/donors', [TiersController::class, 'getDonors'])->name('getdonors');
 
 Route::middleware('auth:sanctum')->group(function () {
 Route::get('/aghermes/{id}', [AghermeController::class, 'getAghermeById']);

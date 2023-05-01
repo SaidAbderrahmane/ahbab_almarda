@@ -11,9 +11,10 @@ class DetailOperation extends Model
     
     protected $table = 'detail_operation';
     protected $primaryKey = 'key_detail_operation';
-
+    public $guarded = ['key_detail_operation'];
     const CREATED_AT = 'date_creat';
     const UPDATED_AT = 'date_modif';
+
     public function operationDon()
     {
         return $this->belongsTo(OperationDon::class,"key_operation","key_operation");

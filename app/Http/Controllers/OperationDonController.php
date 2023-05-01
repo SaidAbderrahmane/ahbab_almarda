@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DetailOperation;
 use App\Models\Lieu;
 use App\Models\OperationDon;
+use App\Models\Tiers;
 use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -58,7 +59,7 @@ class OperationDonController extends Controller
         } catch (QueryException $exception) {
             return back()->withError($exception->getMessage())->withInput();
         }
-        
+
 
         return redirect()->back()->with('success', 'Compaign created successfully');
     }
@@ -70,7 +71,8 @@ class OperationDonController extends Controller
     {
         $compaign = OperationDon::all()->firstWhere("key_operation", "=", $id);
         $compaign_detail = DetailOperation::where('key_operation', $id)->paginate();
-        $response = ['compaign' => $compaign, 'compaign_detail' => $compaign_detail];
+        $donors = Tiers::all()->toQuery()->paginate(30);
+        $response = ['compaign' => $compaign, 'compaign_detail' => $compaign_detail, 'donors' => $donors];
 
         return view('pages.compaign-detail.compaign-detail', $response);
     }
