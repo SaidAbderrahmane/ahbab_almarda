@@ -70,7 +70,7 @@
                                     class="my-3 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
                                     load more </button>
                                 </div>
-                                <a href="#"
+                                <button data-modal-toggle="add-donor-modal" type="button"
                                     class="flex items-center p-3 text-sm font-medium text-blue-600 border-t border-gray-200 rounded-b-lg bg-gray-50 dark:border-gray-600 hover:bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-blue-500 hover:underline">
                                     <svg class="w-5 h-5 mr-1" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"
                                         xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@
                                         </path>
                                     </svg>
                                     {{ __('Add donor') }}
-                                </a>
+                                </button>
                             </div>
                         </div>
                         <div class="col-span-12 sm:col-span-6">

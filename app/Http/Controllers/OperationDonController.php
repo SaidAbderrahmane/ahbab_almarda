@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agherme;
 use App\Models\DetailOperation;
 use App\Models\Lieu;
 use App\Models\OperationDon;
@@ -72,8 +73,8 @@ class OperationDonController extends Controller
         $compaign = OperationDon::all()->firstWhere("key_operation", "=", $id);
         $compaign_detail = DetailOperation::where('key_operation', $id)->paginate();
         $donors = Tiers::all()->toQuery()->paginate(30);
-        $response = ['compaign' => $compaign, 'compaign_detail' => $compaign_detail, 'donors' => $donors];
-
+        $aghermes = Agherme::all();
+        $response = ['compaign' => $compaign, 'compaign_detail' => $compaign_detail, 'donors' => $donors,'aghermes'=>$aghermes];
         return view('pages.compaign-detail.compaign-detail', $response);
     }
 

@@ -200,4 +200,5 @@
         @include('pages.compaign-detail.partials.edit-compaign-detail')
         @include('pages.compaign-detail.partials.add-compaign-detail')
         @include('pages.compaign-detail.partials.delete-compaign-detail')
+        @include('pages.donors.partials.add-donor')
 </x-app-layout>

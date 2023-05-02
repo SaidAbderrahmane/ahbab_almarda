@@ -18,7 +18,7 @@ class TiersController extends Controller
      */
     public function index()
     {
-        $donors = Tiers::all()->toQuery()->where('sexe', '=', 'F')->paginate(30);
+        $donors = Tiers::all()->toQuery()->paginate(30);
         $aghermes = Agherme::all();
         return view('pages.donors.donors', ['donors' => $donors, 'aghermes' => $aghermes]);
 
@@ -50,9 +50,9 @@ class TiersController extends Controller
         );
         Tiers::create(
             [
-                'nom_prenom' => $request->input('nom_prenom'),
-                'pere' => $request->input('pere'),
-                'grand_pere' => $request->input('grand_pere'),
+                'nom_prenom' => strtoupper($request->input('nom_prenom')),
+                'pere' => strtoupper($request->input('pere')),
+                'grand_pere' => strtoupper($request->input('grand_pere')),
                 'groupage' => $request->input('groupage'),
                 'adresse' => $request->input('adresse'),
                 'date_naissance' => date('Y-m-d', strtotime($request->input('date_naissance'))),
@@ -84,19 +84,28 @@ class TiersController extends Controller
     public function getDonors(Request $request)
     {
         $q = $request['q'];
-        if($q){
-            $donors = Tiers::all()->toQuery()->where('nom_prenom', 'like', "%$q%")->orWhere('pere', 'like', "%$q%")->paginate(30);
-        }else {
+        if ($q) {
+            if (count(explode('/', $q)) > 1) {
+                $person = explode('/', $q)[0];
+                $father = explode('/', $q)[1];
+                $donors = Tiers::all()->toQuery()->where('nom_prenom', 'like', "%$person%")->orWhere('pere', 'like', "%$father%")
+                    ->orWhere('code_barres', 'like', "%$q%")->paginate(30);
+            } else {
+                $donors = Tiers::all()->toQuery()->where('nom_prenom', 'like', "%$q%")
+                    ->orWhere('code_barres', 'like', "%$q%")->paginate(30);
+            }
+
+        } else {
             $donors = Tiers::all()->sortBy('nom_prenom')->toQuery()->paginate(30);
         }
-       /*  $utf8Donors = collect([]);
+        /*  $utf8Donors = collect([]);
         foreach ($donors as $donor) {
-            $encoded = json_encode($donor);
-            if (!Str::isJson($encoded)) {
-                Log::warning('Non-UTF-8 donor:', $donor->toArray());
-            } else {
-                $utf8Donors->push($donor);
-            }
+        $encoded = json_encode($donor);
+        if (!Str::isJson($encoded)) {
+        Log::warning('Non-UTF-8 donor:', $donor->toArray());
+        } else {
+        $utf8Donors->push($donor);
+        }
         } */
         return response()->json($donors);
     }
@@ -128,9 +137,9 @@ class TiersController extends Controller
         $donor->update(
             [
                 'key_tiers' => $request->input('key_tiers'),
-                'nom_prenom' => $request->input('nom_prenom'),
-                'pere' => $request->input('pere'),
-                'grand_pere' => $request->input('grand_pere'),
+                'nom_prenom' => strtoupper($request->input('nom_prenom')),
+                'pere' => strtoupper($request->input('pere')),
+                'grand_pere' => strtoupper($request->input('grand_pere')),
                 'groupage' => $request->input('groupage'),
                 'adresse' => $request->input('adresse'),
                 'date_naissance' => date('Y-m-d', strtotime($request->input('date_naissance'))),
