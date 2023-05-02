@@ -19,14 +19,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('pages.dashboard.dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth','role:admin' ])->group(function () {
     Route::get('/', function () {
-      return redirect()->route('dashboard');
+        return redirect()->route('dashboard');
     });
+    Route::get('/dashboard', function () {
+        return view('pages.dashboard.dashboard');
+    })->name('dashboard');
 
     //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -61,18 +60,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/compaigns/{id}/get', [OperationDonController::class, 'getCompaignById'])->name('compaigns.id');
     Route::delete('/compaigns/{id}/delete', [OperationDonController::class, 'destroy'])->name('compaigns.destroy');
 
-    
+
     //compaign-details
     Route::get('/compaigns/{id}', [OperationDonController::class, 'show'])->name('compaign-details');
     Route::post('/compaign-details/store', [DetailOperationController::class, 'store'])->name('compaign-details.store');
     Route::patch('/compaign-details/{id}', [DetailOperationController::class, 'update'])->name('compaign-details.update');
     Route::get('/compaign-details/{id}/get', [DetailOperationController::class, 'getCompaignDetailsById'])->name('compaign-details.id');
     Route::delete('/compaign-details/{id}/delete', [DetailOperationController::class, 'destroy'])->name('compaign-details.destroy');
-    
+
 });
 
-Route::middleware('guest')->group(function ()
-{
+Route::middleware('guest')->group(function () {
     Route::get('/', function () {
         return view('pages.home.home');
     })->name('home');
@@ -84,4 +82,4 @@ Route::middleware('guest')->group(function ()
     })->name('about');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
