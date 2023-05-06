@@ -37,6 +37,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'key_tiers' => [$request->role == 'donor' ? 'required' : null,],
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -44,6 +45,7 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
+            'key_tiers' => $request->key_tiers,
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,
@@ -59,6 +61,8 @@ class UserController extends Controller
     public function getUserById($id)
     {
         $user = User::find($id);
+        $user['nom_prenom'] = $user->tiers->nom_prenom;
+        $user['pere'] = $user->tiers->pere;
         return response()->json(['data' => $user]);
     }
 
@@ -84,12 +88,14 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'key_tiers' => [$request->role == 'donor' ? 'required' : null,],
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'email', 'max:255'],
             'role' => ['required', Rule::in(Config::get('constants.roles'))],
         ]);
         $user = User::find($id);
         $user->update([
+            'key_tiers' => $request->key_tiers,
             'name' => $request->name,
             'email' => $request->email,
             'role' => $request->role,

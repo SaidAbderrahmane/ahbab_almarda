@@ -148,56 +148,6 @@ document.addEventListener('click', async (event) => {
 
 
 
-//edit modal
-document.addEventListener('click', async (event) => {
-    //edit
-    if (event.target.closest('button[data-modal-toggle="edit-compaign-details-modal"]')) {
-        // use closest() method to check if the clicked element or any of its ancestors is the button
-        const button = event.target.closest('button[data-modal-toggle="edit-compaign-details-modal"]');
-        const rowId = button.getAttribute('data-id');
-        console.log(rowId);
-        await axios.get(`/compaign-details/${rowId}/get`)
-        .then((response) => {
-
-                console.log(rowId);
-                console.log(response);
-                const modalForm = document.querySelector('#edit-compaign-details-modal form');
-                const modalInput1 = modalForm.querySelector(
-                    'input[name="key_tiers"]');
-                const modalInput3 = modalForm.querySelector('input[name="par_viber"]');
-                const modalInput4 = modalForm.querySelector('input[name="par_sms"]');
-                const modalInput5 = modalForm.querySelector('input[name="par_annonce"]');
-                const modalInput6 = modalForm.querySelector('input[name="par_facebook"]');
-                const modalInput7 = modalForm.querySelector('input[name="accepte"]');
-                const modalInput8 = modalForm.querySelector('textarea[name="observation"]');
-                const modalInput9 = modalForm.querySelector('input[name="matricule"]');
-
-                // update form values
-                modalInput1.value = response.data.data.key_tiers;
-                document.querySelector("#dropdownSearchButtonEdit").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
-                `+ response.data.data.nom_prenom + `/` + response.data.data .pere + ``;
-                modalInput3.value = response.data.data.par_viber;
-                modalInput3.value == 'O' ? modalInput3.checked = true : null;
-                modalInput4.value = response.data.data.par_sms;
-                modalInput4.value == 'O' ? modalInput4.checked = true : null;
-                modalInput5.value = response.data.data.par_annonce;
-                modalInput5.value == 'O' ? modalInput5.checked = true : null;
-                modalInput6.value = response.data.data.par_facebook;
-                modalInput6.value == 'O' ? modalInput6.checked = true : null;
-                modalInput7.value = response.data.data.accepte;
-                modalInput7.value == 'O' ? modalInput7.checked = true : null;
-                modalInput8.value = response.data.data.observation;
-                modalInput9.value = response.data.data.matricule;
-
-                // update form action
-                modalForm.setAttribute('action', `/compaign-details/${rowId}`);
-
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    }
-});
 //edit modal actions
 
 document.addEventListener('click', async (event) => {
@@ -262,6 +212,58 @@ document.addEventListener('click', async (event) => {
         }).catch((error) => {
             console.error(error);
         });
+    }
+});
+
+
+//edit modal
+document.addEventListener('click', async (event) => {
+    //edit
+    if (event.target.closest('button[data-modal-toggle="edit-compaign-details-modal"]')) {
+        // use closest() method to check if the clicked element or any of its ancestors is the button
+        const button = event.target.closest('button[data-modal-toggle="edit-compaign-details-modal"]');
+        const rowId = button.getAttribute('data-id');
+        console.log(rowId);
+        await axios.get(`/compaign-details/${rowId}/get`)
+        .then((response) => {
+
+                console.log(rowId);
+                console.log(response);
+                const modalForm = document.querySelector('#edit-compaign-details-modal form');
+                const modalInput1 = modalForm.querySelector(
+                    'input[name="key_tiers"]');
+                const modalInput3 = modalForm.querySelector('input[name="par_viber"]');
+                const modalInput4 = modalForm.querySelector('input[name="par_sms"]');
+                const modalInput5 = modalForm.querySelector('input[name="par_annonce"]');
+                const modalInput6 = modalForm.querySelector('input[name="par_facebook"]');
+                const modalInput7 = modalForm.querySelector('input[name="accepte"]');
+                const modalInput8 = modalForm.querySelector('textarea[name="observation"]');
+                const modalInput9 = modalForm.querySelector('input[name="matricule"]');
+
+                // update form values
+                modalInput1.value = response.data.data.key_tiers;
+                document.querySelector("#dropdownSearchButtonEdit").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
+                `+ response.data.data.nom_prenom + `/` + response.data.data .pere + ``;
+                modalInput3.value = response.data.data.par_viber;
+                modalInput3.value == 'O' ? modalInput3.checked = true : null;
+                modalInput4.value = response.data.data.par_sms;
+                modalInput4.value == 'O' ? modalInput4.checked = true : null;
+                modalInput5.value = response.data.data.par_annonce;
+                modalInput5.value == 'O' ? modalInput5.checked = true : null;
+                modalInput6.value = response.data.data.par_facebook;
+                modalInput6.value == 'O' ? modalInput6.checked = true : null;
+                modalInput7.value = response.data.data.accepte;
+                modalInput7.value == 'O' ? modalInput7.checked = true : null;
+                modalInput8.value = response.data.data.observation;
+                modalInput9.value = response.data.data.matricule;
+
+                // update form action
+                modalForm.setAttribute('action', `/compaign-details/${rowId}`);
+
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     }
 });
 
