@@ -10,5 +10,10 @@ return [
         'AB+',
         'O-',
         'O+',
+    ],
+    'roles' => [
+        'admin',
+        'collaborator',
+        'donor',
     ]
 ];

@@ -1,42 +1,7 @@
 <x-app-layout>
-
-    @vite(['resources/js/aghermes.js'])
-  {{--   <script>
-         function fetchAgherme(event) {
-            let rowId = event.currentTarget.getAttribute('data-id');
-            
-            fetch(`/aghermes/${rowId}`)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error('Network response was not ok');
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    console.log(data);
-                    let modalForm = document.querySelector('#edit-agherme-modal form');
-                    let modalInput1 = modalForm.querySelector('input[name="key_agherme"]');
-                    let modalInput2 = modalForm.querySelector('input[name="agherme"]');
-                    // check if elements exist before updating values
-                    if (modalForm && modalInput1 && modalInput2) {
-                        // update form values
-                        modalInput1.value = data.data.key_agherme;
-                        modalInput2.value = data.data.agherme;
-                        // update form action
-                        modalForm.setAttribute('action', `/api/aghermes/${rowId}`);
-                    } else {
-                        console.error('Could not find necessary form elements');
-                    }
-                })
-                .catch((error) => {
-                    // display error message to user
-                    alert('There was a problem with the fetch operation. Please try again later.');
-                    console.error('Error with fetch operation:', error);
-                });
-
-        };
-    </script> --}}
-
+    <x-slot:scripts>
+        @vite(['resources/js/aghermes.js'])
+    </x-slot:scripts>
     <div
         class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div class="w-full mb-1">
@@ -194,27 +159,7 @@
             </div>
         </div>
     </div>
-    <div
-        class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-between dark:bg-gray-800 dark:border-gray-700">
-        <div class="flex items-center mb-4 sm:mb-0">
-            <a href="#"
-                class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </a>
-            <a href="#"
-                class="inline-flex justify-center p-1 mr-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd"
-                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                        clip-rule="evenodd"></path>
-                </svg>
-            </a>
-        </div>
-    </div>
+  
     @include('pages.aghermes.partials.edit-agherme')
     @include('pages.aghermes.partials.add-agherme')
     @include('pages.aghermes.partials.delete-agherme')

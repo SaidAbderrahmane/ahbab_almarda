@@ -6,6 +6,7 @@ use App\Http\Controllers\LieuController;
 use App\Http\Controllers\OperationDonController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TiersController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['auth','role:admin' ])->group(function () {
+Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
@@ -31,6 +32,13 @@ Route::middleware(['auth','role:admin' ])->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    //users
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+    Route::patch('/users/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::get('/users/{id}', [UserController::class, 'getUserById'])->name('users.id');
+    Route::delete('/users/{id}/delete', [UserController::class, 'destroy'])->name('users.destroy');
 
     //donors
     Route::get('/donors', [TiersController::class, 'index'])->name('donors');

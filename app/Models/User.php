@@ -42,4 +42,9 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function tiers()
+    {
+        return $this->hasOne(Tiers::class,"key_tiers","key_tiers");
+    }
 }

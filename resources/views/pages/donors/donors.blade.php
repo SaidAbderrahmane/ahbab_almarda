@@ -1,5 +1,7 @@
 <x-app-layout>
-    @vite(['/resources/js/donors.js'])
+    <x-slot:scripts>
+        @vite(['/resources/js/donors.js'])
+    </x-slot:scripts>
     <div
         class="p-4 bg-white block sm:flex items-center justify-between border-b border-gray-200 lg:mt-1.5 dark:bg-gray-800 dark:border-gray-700">
         <div class="w-full mb-1">
@@ -26,7 +28,7 @@
                                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <a href="{{route('donors')}}"
+                                <a href="{{ route('donors') }}"
                                     class="ml-1 text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ __('Donors') }}</a>
                             </div>
                         </li>
@@ -173,7 +175,7 @@
         </div>
     </div>
     <div
-        class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200  dark:bg-gray-800 dark:border-gray-700">
+        class="sticky bottom-0 right-0 items-center w-full p-4 bg-white border-t border-gray-200 sm:flex sm:justify-end dark:bg-gray-800 dark:border-gray-700">
         {{ $donors->links() }}
     </div>
     @include('pages.donors.partials.edit-donor')

@@ -20,4 +20,8 @@ class Tiers extends Model
     {
         return $this->hasMany(DetailOperation::class,"key_tiers","key_tiers");
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class,"key_tiers","key_tiers");
+    }
 }
