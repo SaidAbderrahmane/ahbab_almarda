@@ -15,5 +15,15 @@ return [
         'admin',
         'collaborator',
         'donor',
+    ],
+    'tel_types'=>[
+        'P'=>'Telephone',
+        'T'=>'Fix',
+        'E'=>'Email'
+    ],
+    'tel_categories'=>[
+        'P'=>'Personnel',
+        'T'=>'Travail',
+        'A'=>'Autre'
     ]
 ];

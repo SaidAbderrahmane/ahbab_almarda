@@ -181,4 +181,7 @@
     @include('pages.donors.partials.edit-donor')
     @include('pages.donors.partials.add-donor')
     @include('pages.donors.partials.delete-donor')
+    @include('pages.donors.partials.add-contact')
+    @include('pages.donors.partials.edit-contact')
+    @include('pages.donors.partials.delete-contact')
 </x-app-layout>

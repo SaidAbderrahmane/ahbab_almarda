@@ -5,6 +5,7 @@ use App\Http\Controllers\DetailOperationController;
 use App\Http\Controllers\LieuController;
 use App\Http\Controllers\OperationDonController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TelephoneController;
 use App\Http\Controllers\TiersController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +44,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     //donors
     Route::get('/donors', [TiersController::class, 'index'])->name('donors');
     Route::post('/donors/store', [TiersController::class, 'store'])->name('donors.store');
+    Route::post('/donors/add', [TiersController::class, 'store_api'])->name('donors.add');
     Route::patch('/donors/{id}', [TiersController::class, 'update'])->name('donors.update');
     Route::get('/donors/{id}', [TiersController::class, 'getDonorById'])->name('donors.id');
     Route::delete('/donors/{id}/delete', [TiersController::class, 'destroy'])->name('donors.destroy');
@@ -75,6 +77,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::patch('/compaign-details/{id}', [DetailOperationController::class, 'update'])->name('compaign-details.update');
     Route::get('/compaign-details/{id}/get', [DetailOperationController::class, 'getCompaignDetailsById'])->name('compaign-details.id');
     Route::delete('/compaign-details/{id}/delete', [DetailOperationController::class, 'destroy'])->name('compaign-details.destroy');
+
+    Route::get('/tiers/{id}/contacts', [TelephoneController::class, 'getContacts'])->name('contacts');
+    Route::get('/tiers/{id}/contacts', [TelephoneController::class, 'getContactById'])->name('contacts.id');
+    Route::post('/contacts/add', [TelephoneController::class, 'store'])->name('contacts.store');
+    Route::patch('/contacts/{id}/update', [TelephoneController::class, 'update'])->name('contacts.update');
+    Route::delete('/contacts/{id}/delete', [TelephoneController::class, 'destroy'])->name('contacts.destroy');
 
 });
 

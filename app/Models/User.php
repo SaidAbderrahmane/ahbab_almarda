@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'role'
+        'role',
+        'key_tiers'
     ];
 
     /**
@@ -45,6 +46,6 @@ class User extends Authenticatable
 
     public function tiers()
     {
-        return $this->hasOne(Tiers::class,"key_tiers","key_tiers");
+        return $this->hasOne(Tiers::class, "key_tiers", "key_tiers");
     }
 }

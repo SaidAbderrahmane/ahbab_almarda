@@ -24,4 +24,10 @@ class Tiers extends Model
     {
         return $this->belongsTo(User::class,"key_tiers","key_tiers");
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(Telephone::class,"key_tiers","key_tiers");
+    }
+
 }
