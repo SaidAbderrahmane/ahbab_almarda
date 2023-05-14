@@ -18,7 +18,34 @@ class TiersController extends Controller
      */
     public function index()
     {
-        $donors = Tiers::all()->toQuery()->paginate(30);
+        $query = Tiers::query();
+
+        if (request()->order) {
+            $orderBy = explode('-', request()->order)[0];
+            $orderHow = explode('-', request()->order)[1];
+        } else {
+            $orderBy = "nom_prenom";
+            $orderHow = "asc";
+        }
+        $query->orderBy($orderBy, $orderHow);
+
+        //search
+        if (request()->q) {
+            $q = request()->q;
+            $query->where('nom_prenom', 'like', "%$q%");
+        }
+        if (request()->agherme) {
+            $agherme = request()->agherme;
+            $query->where('key_agherme', $agherme);
+        }
+        if (request()->sexe) {
+            $sexe = request()->sexe;
+            $query->where('sexe', $sexe);
+        }
+
+
+        $donors = $query->paginate(30);
+       // $donors = Tiers::all()->toQuery()->paginate(30);
         $aghermes = Agherme::all();
         return view('pages.donors.donors', ['donors' => $donors, 'aghermes' => $aghermes]);
 
@@ -97,7 +124,7 @@ class TiersController extends Controller
             ]
         );
 
-        return ['success' => true, 'message' => 'Donor created successfully','donor'=>$id];
+        return ['success' => true, 'message' => 'Donor created successfully', 'donor' => $id];
     }
     /**
      * Display the specified resource.

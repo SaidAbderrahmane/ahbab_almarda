@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AghermeController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailOperationController;
 use App\Http\Controllers\LieuController;
 use App\Http\Controllers\OperationDonController;
@@ -22,12 +23,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
+
+    //dashboard
     Route::get('/', function () {
         return redirect()->route('dashboard');
     });
-    Route::get('/dashboard', function () {
-        return view('pages.dashboard.dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -78,11 +79,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/compaign-details/{id}/get', [DetailOperationController::class, 'getCompaignDetailsById'])->name('compaign-details.id');
     Route::delete('/compaign-details/{id}/delete', [DetailOperationController::class, 'destroy'])->name('compaign-details.destroy');
 
+    //contacts
     Route::get('/tiers/{id}/contacts', [TelephoneController::class, 'getContacts'])->name('contacts');
     Route::get('/tiers/{id}/contacts', [TelephoneController::class, 'getContactById'])->name('contacts.id');
     Route::post('/contacts/add', [TelephoneController::class, 'store'])->name('contacts.store');
     Route::patch('/contacts/{id}/update', [TelephoneController::class, 'update'])->name('contacts.update');
     Route::delete('/contacts/{id}/delete', [TelephoneController::class, 'destroy'])->name('contacts.destroy');
+
 
 });
 

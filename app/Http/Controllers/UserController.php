@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agherme;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -18,8 +19,27 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all()->toQuery()->paginate(30);
-        return view('pages.users.users', ['users' => $users]);
+        $query = User::query();
+
+        if (request()->order) {
+            $orderBy = explode('-',request()->order)[0];
+            $orderHow = explode('-',request()->order)[1];
+        }else {
+            $orderBy = "name";
+            $orderHow = "asc";
+        }
+        $query->orderBy($orderBy,$orderHow);
+        
+        //search
+        if (request()->q) {
+            $q = request()->q;
+           $query->where('name', 'like', "%$q%");
+        }
+
+       // $users = User::all()->toQuery()->paginate(30);
+        $users = $query->paginate(30);
+        $aghermes = Agherme::all();
+        return view('pages.users.users', ['users' => $users,'aghermes'=>$aghermes]);
 
     }
 

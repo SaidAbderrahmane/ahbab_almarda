@@ -12,7 +12,25 @@ class AghermeController extends Controller
      */
     public function index()
     {
-        $aghermes = Agherme::all();
+
+        $query = Agherme::query();
+
+        if (request()->order) {
+            $orderBy = explode('-',request()->order)[0];
+            $orderHow = explode('-',request()->order)[1];
+        }else {
+            $orderBy = "agherme";
+            $orderHow = "asc";
+        }
+        $query->orderBy($orderBy,$orderHow);
+        
+        //search
+        if (request()->q) {
+            $q = request()->q;
+           $query->where('agherme', 'like', "%$q%");
+        }
+
+        $aghermes = $query->get();
         return view('pages.aghermes.aghermes', ['aghermes' => $aghermes]);
     }
 

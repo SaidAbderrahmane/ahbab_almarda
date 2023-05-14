@@ -56,6 +56,9 @@
                         <h1 class="py-3  text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
                             {{ __('Number') . ': ' . ($compaign->num_operation != '' ? $compaign->num_operation : ' null') }}
                         </h1>
+                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                            {{ __('Total attendance') . ': ' . $total }}
+                        </h1>
                     </div>
                     <div class="p-5 flex-1">
                         <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
@@ -66,22 +69,64 @@
                         <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
                             {{ __('For hospital') . ': ' . ($compaign->hopital != '' ? $compaign->hopital : ' null') }}
                         </h1>
+                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                            {{ __('Total accepted') . ': ' . $total_accepted }}
+                        </h1>
                     </div>
                 </div>
             </div>
             @include('components.alerts')
             <div class="sm:flex">
-                <div
-                    class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-                    <form class="lg:pr-3" action="#" method="GET">
-                        <label for="compaign_lines-search" class="sr-only">Search</label>
-                        <div class="relative mt-1 lg:w-64 xl:w-96">
-                            <input type="text" name="email" id="compaign_lines-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for compaign_lines">
+                <div class="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+                    <form class="lg:pr-3" action="{{ route('compaign-details', $compaign->key_operation) }}"
+                        method="GET">
+                        <div class="sm:flex">
+                            <label for="compaign-details-search" class="sr-only">Search</label>
+                            <div class="relative mt-1 lg:w-64 xl:w-96">
+                                <input type="text" name="q" id="compaign-details-search"
+                                    value="{{ request()->q }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Search for donors">
+                            </div>
+                            <div class="flex sm:mx-5 justify-between sm:my-0 my-5">
+                                <label for="order"
+                                    class="my-auto px-2 w-32 block mb-2 text-sm  font-medium text-gray-900 dark:text-white">{{ __('Order by') }}</label>
+                                <select id="order" name="order"
+                                    class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="">{{ __('Order by') }}</option>
+                                    <option {{ request()->order == 'nom_prenom-asc' ? 'selected' : '' }}
+                                        value="nom_prenom-asc">
+                                        {{ __('donor name') }} {{ __('ascending') }}</option>
+                                    <option {{ request()->order == 'nom_prenom-desc' ? 'selected' : '' }}
+                                        value="nom_prenom-desc">
+                                        {{ __('donor name') }} {{ __('descending') }}</option>
+                                    <option {{ request()->order == 'matricule-asc' ? 'selected' : '' }}
+                                        value="matricule-asc">
+                                        {{ __('matricule') }} {{ __('ascending') }}</option>
+                                    <option {{ request()->order == 'matricule-desc' ? 'selected' : '' }}
+                                        value="matricule-desc">
+                                        {{ __('matricule') }} {{ __('descending') }}</option>
+                                    <option {{ request()->order == 'key_detail_operation-asc' ? 'selected' : '' }}
+                                        value="key_detail_operation-asc">
+                                        {{ __('creation') }} {{ __('ascending') }}</option>
+                                    <option {{ request()->order == 'key_detail_operation-desc' ? 'selected' : '' }}
+                                        value="key_detail_operation-desc">
+                                        {{ __('creation') }} {{ __('descending') }}</option>
+                                </select>
+                                <button type="submit"
+                                    class="ml-4 inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg width="24" height="24" viewBox="0 0 20 20"class="w-5 h-5 mr-2 -ml-1"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                        <path fill="#ffffff" fill-rule="evenodd"
+                                            d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z">
+                                        </path>
+                                    </svg>
+                                    {{ __('Apply') }}
+                                </button>
+                            </div>
                         </div>
                     </form>
-                    <div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
+                    {{--  <div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
                         <a href="#"
                             class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -118,7 +163,7 @@
                                 </path>
                             </svg>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                     <button type="button" data-modal-toggle="add-compaign-details-modal"
@@ -203,4 +248,5 @@
     @include('pages.compaign-detail.partials.add-compaign-detail')
     @include('pages.compaign-detail.partials.delete-compaign-detail')
     @include('pages.donors.partials.add-donor')
+    @include('pages.donors.partials.add-contact')
 </x-app-layout>

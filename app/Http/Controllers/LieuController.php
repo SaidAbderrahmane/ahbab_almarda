@@ -12,7 +12,24 @@ class LieuController extends Controller
      */
     public function index()
     {
-        $locations = Lieu::all();
+        $query = Lieu::query();
+
+        if (request()->order) {
+            $orderBy = explode('-', request()->order)[0];
+            $orderHow = explode('-', request()->order)[1];
+        } else {
+            $orderBy = "nom_lieu";
+            $orderHow = "asc";
+        }
+        $query->orderBy($orderBy, $orderHow);
+
+        //search
+        if (request()->q) {
+            $q = request()->q;
+            $query->where('nom_lieu', 'like', "%$q%");
+        }
+
+        $locations = $query->get();
         return view('pages.locations.locations', ['locations' => $locations]);
     }
 
@@ -40,7 +57,7 @@ class LieuController extends Controller
             ]
         );
 
-        return redirect()->back()->with('success','Location created successfully');
+        return redirect()->back()->with('success', 'Location created successfully');
     }
 
     /**

@@ -25,6 +25,7 @@
                     @method('post')
                     @csrf
                     <div class="grid grid-cols-6 gap-6">
+                        {{-- Donor selection --}}
                         <div class="col-span-12 sm:col-span-6">
                             <label for="key_tiers"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Donor') }}
@@ -81,6 +82,7 @@
                                 </button>
                             </div>
                         </div>
+                        {{-- Donor selection end --}}
                         <div class="col-span-6 sm:col-span-3">
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Username') }}

@@ -1,5 +1,18 @@
+// set the dropdown menu element
+const $targetEl = document.getElementById('dropdownSearch');
+const $targetE2 = document.getElementById('dropdownSearchEdit');
+
+// set the element that trigger the dropdown menu on click
+const $triggerEl = document.getElementById('dropdownSearchButton');
+const $triggerE2 = document.getElementById('dropdownSearchButtonEdit');
+
+const dropdown = new Dropdown($targetEl, $triggerEl);
+const dropdownEdit = new Dropdown($targetE2, $triggerE2);
+
+
 const donorsSearchInput = document.querySelector('#input-group-search');
 const donorsSearchInputEdit = document.querySelector('#input-group-search-edit');
+
 donorsSearchInput.addEventListener('input', async (event) => {
     await search();
 });
@@ -10,6 +23,7 @@ donorsSearchInputEdit.addEventListener('input', async (event) => {
 function updateKeyTiers(obj) {
     document.querySelector("#key_tiers").value = obj.value;
     document.querySelector("#dropdownSearchButton").innerHTML = obj.innerHTML;
+    dropdown.hide();
 }
 
 async function search() {
@@ -77,6 +91,7 @@ async function searchEdit() {
 function updateKeyTiersEdit(obj) {
     document.querySelector("#key_tiers_edit").value = obj.value;
     document.querySelector("#dropdownSearchButtonEdit").innerHTML = obj.innerHTML;
+    dropdownEdit.hide();
 }
 
 //  add modal actions
@@ -225,7 +240,7 @@ document.addEventListener('click', async (event) => {
         const rowId = button.getAttribute('data-id');
         console.log(rowId);
         await axios.get(`/compaign-details/${rowId}/get`)
-        .then((response) => {
+            .then((response) => {
 
                 console.log(rowId);
                 console.log(response);
@@ -243,7 +258,7 @@ document.addEventListener('click', async (event) => {
                 // update form values
                 modalInput1.value = response.data.data.key_tiers;
                 document.querySelector("#dropdownSearchButtonEdit").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
-                `+ response.data.data.nom_prenom + `/` + response.data.data .pere + ``;
+                `+ response.data.data.nom_prenom + `/` + response.data.data.pere + ``;
                 modalInput3.value = response.data.data.par_viber;
                 modalInput3.value == 'O' ? modalInput3.checked = true : null;
                 modalInput4.value = response.data.data.par_sms;
@@ -278,4 +293,48 @@ document.addEventListener('click', async (event) => {
         modalForm.setAttribute('action', `/compaign-details/${rowId}/delete`);
 
     }
+});
+
+
+const addContactModalTarget = document.getElementById('add-contact-modal');
+const addDonorModalTarget = document.getElementById('add-donor-modal');
+
+const addContactModal = new Modal(addContactModalTarget);
+const addDonorModal = new Modal(addDonorModalTarget);
+
+
+const addCompaignDetailFrom = document.querySelector('#add-compaign-details-modal form');
+const editCompaignDetailFrom = document.querySelector('#edit-compaign-details-modal form');
+const addDonorFrom = document.querySelector('#add-donor-modal form');
+const addContactFrom = document.querySelector('#add-contact-modal form');
+
+addDonorFrom.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const formData = new FormData(addDonorFrom);
+    console.log(formData);
+    await axios.post('/donors/add', formData).then((response) => {
+        addDonorModal.hide();
+        addContactFrom.querySelector("input[name=key_tiers]").value = response.data.donor.key_tiers;
+        addCompaignDetailFrom.querySelector("input[name=key_tiers]").value = response.data.donor.key_tiers;
+        addCompaignDetailFrom.querySelector("#dropdownSearchButton").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
+        `+ response.data.donor.nom_prenom + `/`+response.data.donor.pere+ ``;
+        editCompaignDetailFrom.querySelector("#dropdownSearchButtonEdit").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
+        `+ response.data.donor.nom_prenom + `/`+response.data.donor.pere+ ``;
+        addContactModal.show();
+    }).catch((error) => {
+        console.log(error);
+    });
+});
+
+
+addContactFrom.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    const formData = new FormData(addContactFrom);
+    console.log(formData);
+    await axios.post('/contacts/add', formData).then((response) => {
+        console.log(response.data);
+        addContactModal.hide();
+    }).catch((error) => {
+        console.error(error);
+    });
 });

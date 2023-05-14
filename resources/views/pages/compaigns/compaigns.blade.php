@@ -28,7 +28,7 @@
                                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <a href="#"
+                                <a href="{{ route('compaigns') }}"
                                     class="ml-1 text-gray-700 hover:text-blue-600 md:ml-2 dark:text-gray-300 dark:hover:text-white">{{ __('Compaigns') }}</a>
                             </div>
                         </li>
@@ -46,22 +46,55 @@
                         </li>
                     </ol>
                 </nav>
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ __('All compaigns') }}
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">{{ __('Compaigns') }}
+                    ({{ $compaigns->total() }})
                 </h1>
             </div>
             @include('components.alerts')
             <div class="sm:flex">
                 <div
-                    class="items-center hidden mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
-                    <form class="lg:pr-3" action="#" method="GET">
-                        <label for="compaigns-search" class="sr-only">Search</label>
-                        <div class="relative mt-1 lg:w-64 xl:w-96">
-                            <input type="text" name="email" id="compaigns-search"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="Search for compaigns">
+                    class="items-center mb-3 sm:flex sm:divide-x sm:divide-gray-100 sm:mb-0 dark:divide-gray-700">
+                    <form class="lg:pr-3" action="{{ route('compaigns') }}" method="GET">
+                        <div class="sm:flex">
+                            <label for="compaigns-search" class="sr-only">Search</label>
+                            <div class="relative mt-1 lg:w-64 xl:w-96">
+                                <input type="text" name="q" id="compaigns-search" value="{{ request()->q }}"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Search for compaigns">
+                            </div>
+                            <div class="flex sm:mx-5 justify-between sm:my-0 my-5">
+                                <label for="order"
+                                    class="my-auto px-2 w-32 block mb-2 text-sm  font-medium text-gray-900 dark:text-white">{{ __('Order by') }}</label>
+                                <select id="order" name="order"
+                                    class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="">{{ __('Order by') }}</option>
+                                    <option {{ request()->order == 'nom_operation-asc' ? 'selected' : '' }}
+                                        value="nom_operation-asc">
+                                        {{ __('Compaign name') }} {{ __('ascending') }}</option>
+                                    <option {{ request()->order == 'nom_operation-desc' ? 'selected' : '' }}
+                                        value="nom_operation-desc">
+                                        {{ __('Compaign name') }} {{ __('descending') }}</option>
+                                    <option {{ request()->order == 'num_operation-desc' ? 'selected' : '' }}
+                                        value="num_operation-desc">
+                                        {{ __('Compaign number') }} {{ __('ascending') }}</option>
+                                    <option {{ request()->order == 'num_operation-desc' ? 'selected' : '' }}
+                                        value="num_operation-desc">
+                                        {{ __('Compaign number') }} {{ __('descending') }}</option>
+                                </select>
+                                <button type="submit"
+                                    class="ml-4 inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <svg width="24" height="24" viewBox="0 0 20 20"class="w-5 h-5 mr-2 -ml-1"
+                                        fill="currentColor" xmlns="http://www.w3.org/2000/svg" fill="none">
+                                        <path fill="#ffffff" fill-rule="evenodd"
+                                            d="M4 9a5 5 0 1110 0A5 5 0 014 9zm5-7a7 7 0 104.2 12.6.999.999 0 00.093.107l3 3a1 1 0 001.414-1.414l-3-3a.999.999 0 00-.107-.093A7 7 0 009 2z">
+                                        </path>
+                                    </svg>
+                                    {{ __('Apply') }}
+                                </button>
+                            </div>
                         </div>
                     </form>
-                    <div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
+                    {{--  <div class="flex pl-0 mt-3 space-x-1 sm:pl-2 sm:mt-0">
                         <a href="#"
                             class="inline-flex justify-center p-1 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                             <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20"
@@ -98,7 +131,7 @@
                                 </path>
                             </svg>
                         </a>
-                    </div>
+                    </div> --}}
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                     <button type="button" data-modal-toggle="add-compaign-modal"

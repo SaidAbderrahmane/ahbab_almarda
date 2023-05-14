@@ -1,3 +1,14 @@
+// set the dropdown menu element
+const $targetEl = document.getElementById('dropdownSearch');
+const $targetE2 = document.getElementById('dropdownSearchEdit');
+
+// set the element that trigger the dropdown menu on click
+const $triggerEl = document.getElementById('dropdownSearchButton');
+const $triggerE2 = document.getElementById('dropdownSearchButtonEdit');
+
+const dropdown = new Dropdown($targetEl, $triggerEl);
+const dropdownEdit = new Dropdown($targetE2, $triggerE2);
+
 document.addEventListener('click', async (event) => {
   if (event.target.closest('button[data-modal-toggle="edit-user-modal"]')) {
     // use closest() method to check if the clicked element or any of its ancestors is the button
@@ -62,6 +73,7 @@ donorsSearchInputEdit.addEventListener('input', async (event) => {
 function updateKeyTiers(obj) {
     document.querySelector("#key_tiers").value = obj.value;
     document.querySelector("#dropdownSearchButton").innerHTML = obj.innerHTML;
+    dropdown.hide();
 }
 
 async function search() {
@@ -127,6 +139,7 @@ async function searchEdit() {
 function updateKeyTiersEdit(obj) {
     document.querySelector("#key_tiers_edit").value = obj.value;
     document.querySelector("#dropdownSearchButtonEdit").innerHTML = obj.innerHTML;
+    dropdownEdit.hide();
 }
 
 //  add modal actions

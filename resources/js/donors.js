@@ -5,27 +5,10 @@ const editContactModalTarget = document.getElementById('edit-contact-modal');
 const addContactModalTarget = document.getElementById('add-contact-modal');
 const addDonorModalTarget = document.getElementById('add-donor-modal');
 
-// options with default values
-const options = {
-  /*  placement: 'bottom-right',
-   backdrop: 'dynamic',
-   backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
-   closable: true, */
-  onHide: () => {
-    console.log('modal is hidden');
-  },
-  onShow: () => {
-    console.log('modal is shown');
-  },
-  onToggle: () => {
-    console.log('modal has been toggled');
-  }
-};
-
-const deleteContactModal = new Modal(deleteContactModalTarget, options);
-const editContactModal = new Modal(editContactModalTarget, options);
-const addContactModal = new Modal(addContactModalTarget, options);
-const addDonorModal = new Modal(addDonorModalTarget, options);
+const deleteContactModal = new Modal(deleteContactModalTarget);
+const editContactModal = new Modal(editContactModalTarget);
+const addContactModal = new Modal(addContactModalTarget);
+const addDonorModal = new Modal(addDonorModalTarget);
 
 document.querySelector('#close-edit-contact-modal').addEventListener('click', function () {
   editContactModal.hide();
