@@ -25,5 +25,5 @@ return [
         'P'=>'Personnel',
         'T'=>'Travail',
         'A'=>'Autre'
-    ]
+    ],
 ];

@@ -14,17 +14,18 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite([ 'resources/js/dark-mode.js'])
     @if (isset($scripts))
         {{ $scripts }}
     @endif
 </head>
 
-<body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+<body class="font-sans antialiased ">
+    <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
         @include('layouts.navigation')
         @auth
             <div class="p-4 sm:ml-60">
-                <div class="pt-8     border-gray-200  rounded-lg dark:border-gray-700 ">
+                <div class="pt-8 border-gray-200 rounded-lg dark:border-gray-700 ">
                 @endauth
                 <!-- Page Heading -->
                 @if (isset($header))

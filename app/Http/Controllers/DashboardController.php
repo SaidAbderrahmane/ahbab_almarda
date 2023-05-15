@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\OperationDon;
+use App\Models\Tiers;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+
+class DashboardController extends Controller
+{
+    public function index()
+    {
+        $total_donors = Tiers::where('key_tiers_type', 2)->count();
+
+        $blood_stats = DB::select('SELECT tiers.groupage, COUNT(*) as count FROM tiers 
+        INNER JOIN detail_operation ON detail_operation.key_tiers = tiers.key_tiers
+        WHERE tiers.key_tiers_type = 2
+        GROUP BY tiers.groupage ORDER BY tiers.groupage asc');
+
+        $age_stats = DB::select('SELECT 
+        CASE 
+            WHEN age >= 18 AND age <= 30 THEN "18-30"
+            WHEN age > 30 AND age <= 40 THEN "30-40"
+            WHEN age > 40 AND age <= 50 THEN "40-50"
+            WHEN age > 50 AND age <= 60 THEN "50-60"
+            ELSE "60+"
+        END AS age_range, 
+        COUNT(*) as count,
+        COUNT(*) * 100 /(' . $total_donors . ') as percentage
+        FROM (
+            SELECT TIMESTAMPDIFF(YEAR, tiers.date_naissance, CURDATE()) AS age 
+            FROM tiers
+            where tiers.key_tiers_type = 2
+        ) AS age_grouped
+        GROUP BY age_range 
+        ORDER BY age_range DESC');
+
+        return view('pages.dashboard.dashboard', [
+            'blood_stats' => $blood_stats,
+            'age_stats' => $age_stats,
+            'total' => $total_donors,
+        ]);
+    }
+
+    public function campaignStatsJson()
+    {
+        $campaign_stats = DB::select(
+            'SELECT  year(operation_don.date_operation) AS year, 
+        COUNT(*) AS count FROM operation_don
+        GROUP BY 1'
+        );
+        $total_compaigns = OperationDon::count();
+        return response()->json(['compaign_stats'=>$campaign_stats,'total_compaigns'=>$total_compaigns]);
+    }
+}

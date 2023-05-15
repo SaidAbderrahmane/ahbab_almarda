@@ -29,6 +29,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         return redirect()->route('dashboard');
     });
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard/campaign-stats-json',[DashboardController::class, 'campaignStatsJson']);
+
 
     //profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
