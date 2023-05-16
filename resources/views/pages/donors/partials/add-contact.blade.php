@@ -1,5 +1,5 @@
 <!-- Add contact Modal -->
-<div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
+<div class="backdrop-brightness-50 drop-shadow-2xl fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
     id="add-contact-modal">
     <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
         <!-- Modal content -->
@@ -41,14 +41,14 @@
                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
                         </div>
-                       
+
                         <div class="col-span-6 sm:col-span-3">
                             <label for="type_tel"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Type') }}</label>
                             <select name="type_tel" id="type_tel"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 <option selected>{{ __('Type') }}</option>
-                                @foreach (Config::get('constants.tel_types') as $key =>  $item)
+                                @foreach (Config::get('constants.tel_types') as $key => $item)
                                     <option value="{{ $key }}">{{ $item }}</option>
                                 @endforeach
                             </select>
@@ -64,16 +64,16 @@
                                 @endforeach
                             </select>
                         </div>
-                       
                     </div>
+                    <!-- Modal footer -->
+                    <div class="items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-700">
+                        <button
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="submit">Add contact
+                        </button>
+                    </div>
+                </form>
             </div>
-            <!-- Modal footer -->
-            <div class="items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-700">
-                <button
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="submit">Add contact</button>
-            </div>
-            </form>
         </div>
     </div>
 </div>

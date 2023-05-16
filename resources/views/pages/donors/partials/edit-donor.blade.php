@@ -1,4 +1,4 @@
-<!-- Edit Donor Modal -->
+<!-- Edit Donor Modal -->.
 <div class="fixed left-0 right-0 z-50 items-center justify-center hidden overflow-x-hidden overflow-y-auto top-4 md:inset-0 h-modal sm:h-full"
     id="edit-donor-modal">
     <div class="relative w-full h-full max-w-2xl px-4 md:h-auto">
@@ -112,31 +112,31 @@
                                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                         </div>
                     </div>
-            </div>
-            <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
-                <h3 class="text-xl font-semibold dark:text-white">
-                    {{ __('Contacts') }}
-                </h3>
-                <button type="button" data-modal-toggle="add-contact-modal" data-id=""
-                    class="add-contact-button inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                    <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd"
-                            d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
-                            clip-rule="evenodd"></path>
-                    </svg>
-                    add contact
-                </button>
-            </div>
+                    <div class="flex items-start justify-between p-5 border-b rounded-t dark:border-gray-700">
+                        <h3 class="text-xl font-semibold dark:text-white">
+                            {{ __('Contacts') }}
+                        </h3>
+                        <button type="button" data-modal-toggle="add-contact-modal" data-id=""
+                            class="add-contact-button inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                            <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
+                            add contact
+                        </button>
+                    </div>
 
-            @include('pages.donors.partials.contacts')
-            <!-- Modal footer -->
-            <div class="items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-700">
-                <button
-                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                    type="submit">Save all</button>
+                    @include('pages.donors.partials.contacts')
+                    <!-- Modal footer -->
+                    <div class="items-center p-6 border-t border-gray-200 rounded-b dark:border-gray-700">
+                        <button
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            type="submit">Save all</button>
+                    </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 </div>

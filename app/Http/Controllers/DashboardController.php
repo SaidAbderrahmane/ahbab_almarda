@@ -14,7 +14,7 @@ class DashboardController extends Controller
     {
         $total_donors = Tiers::where('key_tiers_type', 2)->count();
 
-        $blood_stats = DB::select('SELECT tiers.groupage, COUNT(*) as count FROM tiers 
+        $blood_stats = DB::select('SELECT tiers.groupage, COUNT(*) as count, COUNT(*) * 100 /(' . $total_donors . ') as percentage FROM tiers 
         INNER JOIN detail_operation ON detail_operation.key_tiers = tiers.key_tiers
         WHERE tiers.key_tiers_type = 2
         GROUP BY tiers.groupage ORDER BY tiers.groupage asc');
@@ -51,7 +51,18 @@ class DashboardController extends Controller
         COUNT(*) AS count FROM operation_don
         GROUP BY 1'
         );
-        $total_compaigns = OperationDon::count();
-        return response()->json(['compaign_stats'=>$campaign_stats,'total_compaigns'=>$total_compaigns]);
+        $donors_per_aghermes = DB::select(
+            'SELECT  agherme.agherme, 
+            COUNT(*) AS count FROM detail_operation
+            inner join tiers on tiers.key_tiers = detail_operation.key_tiers 
+            inner join agherme on agherme.key_agherme = tiers.key_agherme
+            GROUP BY 1 ORDER BY 2 DESC'
+        );
+        $total_compaigns = OperationDon::All()->count();
+        return response()->json([
+            'compaign_stats' => $campaign_stats,
+            'total_compaigns' => $total_compaigns,
+            'donors_per_aghermes' => $donors_per_aghermes
+        ]);
     }
 }
