@@ -1,9 +1,31 @@
 axios.get('/dashboard/campaign-stats-json')
     .then(response => {
         console.log(response.data);
-        const compaign_stats = response.data.compaign_stats;
+        //compaigns per year
+        const campaigns_per_year = response.data.campaigns_per_year;
         const total_compaigns = response.data.total_compaigns;
-        document.querySelector('#total_compaigns').innerHTML = total_compaigns + ' compaign in total ';
+        document.querySelector('#total_compaigns').innerHTML = 'Total compaigns : '+total_compaigns;
+        //chart
+        var options = {
+            chart: {
+                type: 'bar',
+                height: 350,
+            },
+            series: [{
+                name: 'Campaigns',
+                data: campaigns_per_year.map(stat => stat.count),
+            }],
+            xaxis: {
+                categories: campaigns_per_year.map(stat => stat.year),
+            },
+        };
+        var chart = new ApexCharts(document.querySelector("#campaigns_per_year"), options);
+        chart.render();
+
+
+        // donations per year
+        const donations_per_year = response.data.donations_per_year;
+        document.querySelector('#total_compaigns').innerHTML = 'Total compaigns : '+total_compaigns;
         //chart
         var options = {
 
@@ -13,17 +35,17 @@ axios.get('/dashboard/campaign-stats-json')
             },
             series: [{
                 name: 'Campaigns',
-                data: compaign_stats.map(stat => stat.count),
+                data: donations_per_year.map(stat => stat.count),
             }],
             tooltip: {
                 theme: "dark"
             },
             xaxis: {
-                categories: compaign_stats.map(stat => stat.year),
+                categories: donations_per_year.map(stat => stat.year),
             },
         };
 
-        var chart = new ApexCharts(document.querySelector("#chart"), options);
+        var chart = new ApexCharts(document.querySelector("#donations_per_year"), options);
         chart.render();
 
         //pie chart 
@@ -61,7 +83,7 @@ axios.get('/dashboard/campaign-stats-json')
             }]
         };
         // Render the pie chart
-        const chart2 = new ApexCharts(document.querySelector("#donors_per_cities"), options2);
+        const chart2 = new ApexCharts(document.querySelector("#donations_per_cities"), options2);
         chart2.render();
 
     })

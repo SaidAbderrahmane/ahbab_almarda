@@ -46,30 +46,30 @@
                         </li>
                     </ol>
                 </nav>
-                <div class="flex bg-gray-100 rounded-xl">
+                <div class="flex bg-gray-500 dark:bg-gray-500 rounded-xl bg-cover bg-no-repeat bg-[url('https://cvgcares.com/wp-content/uploads/2020/02/red-blood-cell-post-image.jpg')] bg-blend-multiply ">
                     <div class="p-5 flex-1 ">
-                        <h1 class="py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class="py-3 text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('Compaign id ') . ': ' . $compaign->key_operation }}</h1>
-                        <h1 class="py-3  text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class="py-3  text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('Name') . ': ' . ($compaign->nom_operation != '' ? $compaign->nom_operation : ' null') }}
                         </h1>
-                        <h1 class="py-3  text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class="py-3  text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('Number') . ': ' . ($compaign->num_operation != '' ? $compaign->num_operation : ' null') }}
                         </h1>
-                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
-                            {{ __('Total attendance') . ': ' . $total }}
+                        <h1 class=" py-3 text-xl font-semibold text-white sm:text-2xl dark:text-white">
+                            {{ __('Total donations') . ': ' . $total }}
                         </h1>
                     </div>
                     <div class="p-5 flex-1">
-                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class=" py-3 text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('Date') . ': ' . date('d/m/Y', strtotime($compaign->date_operation)) }}</h1>
-                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class=" py-3 text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('Location') . ': ' . ($compaign->location->nom_lieu != '' ? $compaign->location->nom_lieu : ' null') }}
                         </h1>
-                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class=" py-3 text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('For hospital') . ': ' . ($compaign->hopital != '' ? $compaign->hopital : ' null') }}
                         </h1>
-                        <h1 class=" py-3 text-xl font-semibold text-gray-700 sm:text-2xl dark:text-white">
+                        <h1 class=" py-3 text-xl font-semibold text-white sm:text-2xl dark:text-white">
                             {{ __('Total accepted') . ': ' . $total_accepted }}
                         </h1>
                     </div>

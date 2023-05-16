@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DetailOperation;
 use App\Models\OperationDon;
 use App\Models\Tiers;
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         $total_donors = Tiers::where('key_tiers_type', 2)->count();
+        $total_donations = DetailOperation::count();
 
         $blood_stats = DB::select('SELECT tiers.groupage, COUNT(*) as count, COUNT(*) * 100 /(' . $total_donors . ') as percentage FROM tiers 
         INNER JOIN detail_operation ON detail_operation.key_tiers = tiers.key_tiers
@@ -41,12 +43,13 @@ class DashboardController extends Controller
             'blood_stats' => $blood_stats,
             'age_stats' => $age_stats,
             'total' => $total_donors,
+            'total_donations'=>$total_donations
         ]);
     }
 
     public function campaignStatsJson()
     {
-        $campaign_stats = DB::select(
+        $campaigns_per_year = DB::select(
             'SELECT  year(operation_don.date_operation) AS year, 
         COUNT(*) AS count FROM operation_don
         GROUP BY 1'
@@ -58,11 +61,18 @@ class DashboardController extends Controller
             inner join agherme on agherme.key_agherme = tiers.key_agherme
             GROUP BY 1 ORDER BY 2 DESC'
         );
+        $donations_per_year = DB::select(
+            'SELECT  year(operation_don.date_operation) AS year, 
+            COUNT(*) AS count FROM operation_don INNER JOIN detail_operation ON detail_operation.key_operation = operation_don.key_operation
+            GROUP BY 1'
+        );
+
         $total_compaigns = OperationDon::All()->count();
         return response()->json([
-            'compaign_stats' => $campaign_stats,
+            'campaigns_per_year' => $campaigns_per_year,
             'total_compaigns' => $total_compaigns,
-            'donors_per_aghermes' => $donors_per_aghermes
+            'donors_per_aghermes' => $donors_per_aghermes,
+            'donations_per_year'=>$donations_per_year
         ]);
     }
 }

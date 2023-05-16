@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $query = User::query();
+        $query = User::with('tiers');
 
         if (request()->order) {
             $orderBy = explode('-',request()->order)[0];
@@ -36,8 +36,8 @@ class UserController extends Controller
            $query->where('name', 'like', "%$q%");
         }
 
-       // $users = User::all()->toQuery()->paginate(30);
         $users = $query->paginate(30);
+
         $aghermes = Agherme::all();
         return view('pages.users.users', ['users' => $users,'aghermes'=>$aghermes]);
 
@@ -81,8 +81,8 @@ class UserController extends Controller
     public function getUserById($id)
     {
         $user = User::find($id);
-        $user['nom_prenom'] = $user->tiers->nom_prenom;
-        $user['pere'] = $user->tiers->pere;
+        $user['nom_prenom'] = $user->tiers?->nom_prenom;
+        $user['pere'] = $user->tiers?->pere;
         return response()->json(['data' => $user]);
     }
 
