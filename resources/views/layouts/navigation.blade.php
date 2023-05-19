@@ -1,6 +1,6 @@
-@if(Auth::user())
+@auth
  <x-sidebar/>
- @endif
+@endauth
  <x-navbar/>
 {{-- <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->

@@ -60,17 +60,17 @@ async function loadDonor() {
       contactsTable.innerHTML = "";
       for (const contact of contacts) {
         contactsTable.innerHTML = contactsTable.innerHTML + `
-        <tr class="bg-white border-b dark:bg-gray-900 dark:border-gray-700 text-black" >
+        <tr class="bg-white border-b dark:bg-gray-700 dark:border-gray-700 text-black" >
             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">`+
           contact.tel_email + `
             </th>
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 dark:text-white"">
               `+ contact.type_tel + `
             </td>
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 dark:text-white"">
               `+ contact.personnel_autre + `
             </td>
-            <td class="px-6 py-4">
+            <td class="px-6 py-4 dark:text-white"">
                 `+ contact.proprietaire + `
             </td>
             <td class="px-6 py-4">
