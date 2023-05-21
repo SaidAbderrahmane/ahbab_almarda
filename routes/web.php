@@ -73,7 +73,6 @@ Route::middleware(['auth'])->group(function () {
 
         //contacts
         Route::get('/tiers/{id}/contacts', [TelephoneController::class, 'getContacts'])->name('contacts');
-        Route::get('/tiers/{id}/contacts', [TelephoneController::class, 'getContactById'])->name('contacts.id');
         Route::post('/contacts/add', [TelephoneController::class, 'store'])->name('contacts.store');
         Route::patch('/contacts/{id}/update', [TelephoneController::class, 'update'])->name('contacts.update');
         Route::delete('/contacts/{id}/delete', [TelephoneController::class, 'destroy'])->name('contacts.destroy');

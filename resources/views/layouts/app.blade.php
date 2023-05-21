@@ -32,12 +32,12 @@
     <div class="min-h-screen bg-gray-50 dark:bg-gray-900">
         @include('layouts.navigation')
         @auth
-            <div class="p-4 sm:ml-60">
+            <div class="sm:ml-60 pt-7">
                 <div class="pt-8 border-gray-200 rounded-lg dark:border-gray-700 ">
                 @endauth
                 <!-- Page Heading -->
                 @if (isset($header))
-                    <header class="bg-white shadow">
+                    <header class="bg-white dark:bg-gray-700 shadow">
                         <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                             {{ $header }}
                         </div>

@@ -16,8 +16,8 @@ class TelephoneController extends Controller
     }
     public function getContacts($id)
     {
-        $contacts = Telephone::all()->where('key_tiers',$id);
-        return response()->json(['data' => $contacts]);
+        $contacts = Telephone::where('key_tiers',$id)->get();
+        return response()->json(['contacts' => $contacts]);
     }
 
     /**

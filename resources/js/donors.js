@@ -5,6 +5,21 @@ const editContactModalTarget = document.getElementById('edit-contact-modal');
 const addContactModalTarget = document.getElementById('add-contact-modal');
 const addDonorModalTarget = document.getElementById('add-donor-modal');
 
+const options = {
+  backdrop: 'dynamic',
+  backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-50',
+  closable: true,
+  onHide: () => {
+      console.log('modal is hidden');
+  },
+  onShow: () => {
+      console.log('modal is shown');
+  },
+  onToggle: () => {
+      console.log('modal has been toggled');
+  }
+};
+
 const deleteContactModal = new Modal(deleteContactModalTarget);
 const editContactModal = new Modal(editContactModalTarget);
 const addContactModal = new Modal(addContactModalTarget);

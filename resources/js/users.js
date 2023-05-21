@@ -36,6 +36,7 @@ document.addEventListener('click', async (event) => {
                 if (response.data.data.key_tiers != null)
                     document.querySelector("#dropdownSearchButtonEdit").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
         `+ response.data.data.nom_prenom + `/` + response.data.data.pere + ``;
+                else document.querySelector("#dropdownSearchButtonEdit").innerHTML = "Donor";
 
                 // update form action
                 modalForm.setAttribute('action', `/users/${rowId}`);
