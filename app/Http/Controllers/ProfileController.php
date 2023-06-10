@@ -43,7 +43,7 @@ class ProfileController extends Controller
         $request->user()->save();
 
         $request->validate([
-            'nom_prenom' => ['required', 'string'],
+            'name' => ['required', 'string'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'pere' => 'required',
             'grand_pere' => 'required',

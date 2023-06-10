@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
     <x-slot name="scripts">
-        @vite(['/resources/js/profile.js'])
+        @vite(['resources/js/profile.js'])
     </x-slot>
     <div class="py-12">
         @include('components.alerts')

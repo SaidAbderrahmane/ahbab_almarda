@@ -5,21 +5,6 @@ const editContactModalTarget = document.getElementById('edit-contact-modal');
 const addContactModalTarget = document.getElementById('add-contact-modal');
 const addDonorModalTarget = document.getElementById('add-donor-modal');
 
-const options = {
-  backdrop: 'dynamic',
-  backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-50',
-  closable: true,
-  onHide: () => {
-      console.log('modal is hidden');
-  },
-  onShow: () => {
-      console.log('modal is shown');
-  },
-  onToggle: () => {
-      console.log('modal has been toggled');
-  }
-};
-
 const deleteContactModal = new Modal(deleteContactModalTarget);
 const editContactModal = new Modal(editContactModalTarget);
 const addContactModal = new Modal(addContactModalTarget);
@@ -27,6 +12,9 @@ const addDonorModal = new Modal(addDonorModalTarget);
 
 document.querySelector('#close-edit-contact-modal').addEventListener('click', function () {
   editContactModal.hide();
+});
+document.querySelector('#close-add-contact-modal').addEventListener('click', function () {
+  addContactModal.hide();
 })
 
 document.querySelectorAll('.close-delete-contact-modal').forEach(button => {
@@ -144,6 +132,7 @@ const deleteContactButtons = document.querySelectorAll('.delete-contact-button')
 
 addContactButtons.forEach(button => {
   button.addEventListener('click', async function (event) {
+    addContactModal.show();
     addContactFrom.querySelector("input[name=key_tiers]").value = button.getAttribute("data-id");
   })
 })
@@ -198,7 +187,7 @@ addDonorFrom.addEventListener('submit', async function (event) {
   await axios.post('/donors/add', formData).then((response) => {
     addDonorModal.hide();
     addContactFrom.querySelector("input[name=key_tiers]").value = response.data.donor.key_tiers;
-    addContactModal.show();
+    addContactModal.show(); 
   }).catch((error) => {
     console.log(error);
   });
@@ -210,7 +199,6 @@ addContactFrom.addEventListener('submit', async function (event) {
   const formData = new FormData(addContactFrom);
   console.log(formData);
   await axios.post('/contacts/add', formData).then((response) => {
-    console.log(response.data);
     addContactModal.hide();
     loadDonor();
   }).catch((error) => {

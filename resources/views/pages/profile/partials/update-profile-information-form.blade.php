@@ -55,14 +55,6 @@
                     </div>
                 </div>
                 <div class="col-span-6 sm:col-span-3">
-                    <label for="nom_prenom"
-                        class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Full Name') }}
-                    </label>
-                    <input type="text" name="nom_prenom" id="nom_prenom"
-                        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                        value="{{ $user->tiers?->nom_prenom ?? '' }}" required>
-                </div>
-                <div class="col-span-6 sm:col-span-3">
                     <label for="pere"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Father') }}</label>
                     <input type="text" name="pere" id="pere" value="{{ $user->tiers?->pere ?? '' }}"

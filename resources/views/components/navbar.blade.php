@@ -1,8 +1,11 @@
 <nav class="fixed top-0 z-40 w-full bg-white border-b border-gray-200 dark:bg-gray-800 dark:border-gray-700">
     <div class="w-full flex flex-wrap items-center justify-between p-4">
         <div class="flex items-center justify-start">
-            <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
-                data-collapse-toggle="navbar-default" type="button"
+            <button
+                @guest
+                data-collapse-toggle="navbar-default" type="button" @endguest
+                @auth
+                data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar" @endauth
                 class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open sidebar</span>
                 <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20"

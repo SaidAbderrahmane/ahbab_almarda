@@ -116,7 +116,7 @@
                         <h3 class="text-xl font-semibold dark:text-white">
                             {{ __('Contacts') }}
                         </h3>
-                        <button type="button" data-modal-toggle="add-contact-modal" data-id=""
+                        <button type="button" data-id=""
                             class="add-contact-button inline-flex items-center justify-center w-1/2 px-3 py-2 text-sm font-medium text-center text-white rounded-lg bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 sm:w-auto dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg class="w-5 h-5 mr-2 -ml-1" fill="currentColor" viewBox="0 0 20 20"
                                 xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot:scripts>
-        @vite(['/resources/js/charts.js'])
+        @vite(['resources/js/charts.js'])
     </x-slot:scripts>
     <div class="px-4 pt-6">
         @include('pages.dashboard.partials.blood_stats')
