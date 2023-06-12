@@ -44,7 +44,7 @@
                     </header>
                 @endif
                 <!-- Page Content -->
-                <main>
+                <main class="pl-4">
                     {{ $slot }}
                 </main>
                 @auth
