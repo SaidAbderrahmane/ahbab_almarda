@@ -78,6 +78,6 @@ Membre de l'association "Amis du Malade", une association à but humanitaire, do
 git ftp:
 
 
-git config git-ftp.url "ftp://ftp.levelup-devs.com/public_html"
-git config git-ftp.user "delfivco"
-git config git-ftp.password "levelup@2024"
+git config git-ftp.url "ahbab.levelup-devs.com"
+git config git-ftp.user "ahbab@levelup-devs.com"
+git config git-ftp.password "Levelup@2024"
