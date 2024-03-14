@@ -68,3 +68,16 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 about us :
 Membre de l'association "Amis du Malade", une association à but humanitaire, dont les missions comprennent l'organisation de campagnes de don de sang, de campagnes de sensibilisation et de conférences dans le domaine de la santé, ainsi que le soutien matériel et moral aux patients
+
+
+
+
+
+
+
+git ftp:
+
+
+git config git-ftp.url "ftp://ftp.levelup-devs.com/public_html"
+git config git-ftp.user "delfivco"
+git config git-ftp.password "levelup@2024"
