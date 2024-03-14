@@ -79,7 +79,7 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User created successfully');
     }
     public function getUserById($id)
-    {
+    {   
         $user = User::find($id);
         $user['nom_prenom'] = $user->tiers?->nom_prenom;
         $user['pere'] = $user->tiers?->pere;

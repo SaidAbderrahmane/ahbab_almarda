@@ -2,7 +2,7 @@
     class="bg-cover bg-no-repeat bg-[url('https://images.unsplash.com/photo-1615461066159-fea0960485d5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1016&q=80')] bg-gray-600 bg-blend-multiply">
     <div class="px-4 mx-auto max-w-screen-xl text-center py-24 lg:py-56">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">
-            {{ __('Donate blood, save lifes!') }}</h1>
+            {{ __('Donate blood, save lives!') }}</h1>
         <p class="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">
             {{ __('Donating blood means helping to save 1 million lives every year, because this donation also includes platelets, plasma or even placental blood.') }}
         </p>

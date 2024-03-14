@@ -64,3 +64,7 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+about us :
+Membre de l'association "Amis du Malade", une association à but humanitaire, dont les missions comprennent l'organisation de campagnes de don de sang, de campagnes de sensibilisation et de conférences dans le domaine de la santé, ainsi que le soutien matériel et moral aux patients

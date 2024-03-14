@@ -85,7 +85,7 @@
                                 </button>
                             </div>
                         </div>
-                    </form> --}}
+                    </form> 
                 </div>
                 <div class="flex items-center ml-auto space-x-2 sm:space-x-3">
                     <button type="button" data-modal-toggle="add-location-modal"

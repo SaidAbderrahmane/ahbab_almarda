@@ -28,6 +28,7 @@ function updateKeyTiers(obj) {
 
 async function search() {
     let searchTerm = donorsSearchInput.value;
+    document.getElementById('loader').classList.remove('hidden');
     await axios.get('/api/donors', { params: { q: searchTerm } }).then((response) => {
         console.log(response);
         const modalForm = document.querySelector('#add-compaign-details-modal form');
@@ -50,7 +51,7 @@ async function search() {
                 updateKeyTiers(event.target);
             });
         });
-
+        document.getElementById('loader').classList.add('hidden');
     }).catch((error) => {
         console.error(error);
     });
@@ -239,6 +240,8 @@ document.addEventListener('click', async (event) => {
         const button = event.target.closest('button[data-modal-toggle="edit-compaign-details-modal"]');
         const rowId = button.getAttribute('data-id');
         console.log(rowId);
+
+        document.getElementById('loader').classList.remove('hidden');
         await axios.get(`/compaign-details/${rowId}/get`)
             .then((response) => {
 
@@ -274,6 +277,7 @@ document.addEventListener('click', async (event) => {
 
                 // update form action
                 modalForm.setAttribute('action', `/compaign-details/${rowId}`);
+                document.getElementById('loader').classList.add('hidden');
 
             })
             .catch((error) => {
@@ -317,9 +321,9 @@ addDonorFrom.addEventListener('submit', async function (event) {
         addContactFrom.querySelector("input[name=key_tiers]").value = response.data.donor.key_tiers;
         addCompaignDetailFrom.querySelector("input[name=key_tiers]").value = response.data.donor.key_tiers;
         addCompaignDetailFrom.querySelector("#dropdownSearchButton").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
-        `+ response.data.donor.nom_prenom + `/`+response.data.donor.pere+ ``;
+        `+ response.data.donor.nom_prenom + `/` + response.data.donor.pere + ``;
         editCompaignDetailFrom.querySelector("#dropdownSearchButtonEdit").innerHTML = `<img class="w-6 h-6 mr-2 rounded-full" src="/imgs/profile.png" alt="user">
-        `+ response.data.donor.nom_prenom + `/`+response.data.donor.pere+ ``;
+        `+ response.data.donor.nom_prenom + `/` + response.data.donor.pere + ``;
         addContactModal.show();
     }).catch((error) => {
         console.log(error);

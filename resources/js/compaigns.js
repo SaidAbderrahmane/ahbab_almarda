@@ -4,6 +4,7 @@ document.addEventListener('click', async (event) => {
     const button = event.target.closest('button[data-modal-toggle="edit-compaign-modal"]');
     const rowId = button.getAttribute('data-id');
     console.log(rowId);
+    document.getElementById('loader').classList.remove('hidden');
     await axios.get(`/compaigns/${rowId}/get`)
       .then((response) => {
 
@@ -29,7 +30,7 @@ document.addEventListener('click', async (event) => {
 
         // update form action
         modalForm.setAttribute('action', `/compaigns/${rowId}`);
-
+        document.getElementById('loader').classList.add('hidden');
       })
       .catch((error) => {
         console.error(error);

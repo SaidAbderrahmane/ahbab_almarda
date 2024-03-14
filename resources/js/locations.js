@@ -3,9 +3,10 @@ document.addEventListener('click', async (event) => {
     // use closest() method to check if the clicked element or any of its ancestors is the button
     const button = event.target.closest('button[data-modal-toggle="edit-location-modal"]');
     const rowId = button.getAttribute('data-id');
+    
+    document.getElementById('loader').classList.remove('hidden');
     await axios.get(`/locations/${rowId}`)
       .then((response) => {
-
         console.log(response);
         const modalForm = document.querySelector('#edit-location-modal form');
         const modalInput1 = modalForm.querySelector(
@@ -16,7 +17,7 @@ document.addEventListener('click', async (event) => {
         modalInput2.value = response.data.data.nom_lieu;
         // update form action
         modalForm.setAttribute('action', `/locations/${rowId}`);
-
+        document.getElementById('loader').classList.add('hidden');
       })
       .catch((error) => {
         console.error(error);

@@ -1,8 +1,11 @@
 document.addEventListener('click', async (event) => {
+
   if (event.target.closest('button[data-modal-toggle="edit-agherme-modal"]')) {
     // use closest() method to check if the clicked element or any of its ancestors is the button
     const button = event.target.closest('button[data-modal-toggle="edit-agherme-modal"]');
     const rowId = button.getAttribute('data-id');
+    
+    document.getElementById('loader').classList.remove('hidden');
     await axios.get(`/aghermes/${rowId}`)
       .then((response) => {
 
@@ -16,6 +19,7 @@ document.addEventListener('click', async (event) => {
         modalInput2.value = response.data.data.agherme;
         // update form action
         modalForm.setAttribute('action', `/aghermes/${rowId}`);
+        document.getElementById('loader').classList.add('hidden');
 
       })
       .catch((error) => {
@@ -33,6 +37,6 @@ document.addEventListener('click', async (event) => {
     const modalForm = document.querySelector('#delete-agherme-modal form');
     // update form action
     modalForm.setAttribute('action', `/aghermes/${rowId}/delete`);
-    
+
   }
 });

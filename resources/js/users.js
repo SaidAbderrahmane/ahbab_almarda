@@ -14,6 +14,8 @@ document.addEventListener('click', async (event) => {
         // use closest() method to check if the clicked element or any of its ancestors is the button
         const button = event.target.closest('button[data-modal-toggle="edit-user-modal"]');
         const rowId = button.getAttribute('data-id');
+
+        document.getElementById('loader').classList.remove('hidden');
         await axios.get(`/users/${rowId}`)
             .then((response) => {
 
@@ -40,7 +42,7 @@ document.addEventListener('click', async (event) => {
 
                 // update form action
                 modalForm.setAttribute('action', `/users/${rowId}`);
-
+                document.getElementById('loader').classList.add('hidden');
             })
             .catch((error) => {
                 console.error(error);

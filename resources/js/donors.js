@@ -25,6 +25,7 @@ document.querySelectorAll('.close-delete-contact-modal').forEach(button => {
 
 async function loadDonor() {
   let rowId = document.querySelector('.add-contact-button').getAttribute("data-id");
+  document.getElementById('loader').classList.remove('hidden');
   await axios.get(`/donors/${rowId}`)
     .then((response) => {
       console.log(response);
@@ -97,6 +98,7 @@ async function loadDonor() {
             </td>
         </tr>`;
       };
+      document.getElementById('loader').classList.add('hidden');
     })
     .catch((error) => {
       console.error(error);
