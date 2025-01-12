@@ -1,83 +1,70 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
-
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-
-
 about us :
 Membre de l'association "Amis du Malade", une association à but humanitaire, dont les missions comprennent l'organisation de campagnes de don de sang, de campagnes de sensibilisation et de conférences dans le domaine de la santé, ainsi que le soutien matériel et moral aux patients
 
 
 
+# Project Title
+
+## Overview
+This project is a web application built using Laravel and Vue.js. It aims to provide a platform for managing blood donation campaigns and donor information. The application is designed for use by donors, collaborators, and administrators, each with specific functionalities.
+
+## Project Structure
+
+- `app/Models`: Contains the Eloquent models for interacting with the database.
+- `app/Http/Controllers`: Houses the controllers that handle the incoming requests and return responses.
+- `resources/views`: Contains Blade templates for rendering the HTML pages.
+- `resources/js`: Includes JavaScript files for adding interactivity to the frontend.
+
+## Key Features
+
+- Manage blood donation campaigns.
+- Record and view donor information.
+- Manage user roles and access permissions.
+- Access a dashboard with key statistics and summaries.
+- Manage cities and hospitals.
+
+## Roles and privilges
+
+### Guest
+- View homepage with hero section and informational content.
+- Access information about the year's blood donation campaigns.
+- Learn about the association and contact details.
+
+### Donor
+- View and update personal information.
+- Review personal donation history.
+
+### Collaborator
+- Access active donation information.
+- View list of donors.
+
+### Admin
+- Dashboard with key statistics.
+- Manage campaigns, locations, and user information.
+
+### Screenshots
+
+![dashboard](/screenshots/dashboard1.png)
+![dashboard](/screenshots/dashboard2.png)
+![compaigns](/screenshots/compaigns.png)
+![locations](/screenshots/locations.png)
+
+    
+
+## Installation
+
+1. Clone the repository.
+2. Run `composer install` to install PHP dependencies.
+3. Run `npm install` to install JavaScript dependencies.
+4. Copy `.env.example` to `.env` and configure your environment variables.
+5. Run `php artisan key:generate` to generate the application key.
+6. Run `php artisan migrate` to set up the database.
+
+## Usage
+
+- Start the development server using `npm run dev`.
+- Access the application at `http://localhost:8000`.
 
 
 
 
-git ftp:
-
-
-git config git-ftp.url "ahbab.levelup-devs.com"
-git config git-ftp.user "ahbab@levelup-devs.com"
-git config git-ftp.password "Levelup@2024"
