@@ -37,6 +37,12 @@ class DetailOperationController extends Controller
                     'key_operation' => 'required',
                 ]
             );
+            $exists = DetailOperation::where('key_tiers',$request->input('key_tiers'))
+            ->where('key_operation',$request->input('key_operation'))->get();
+            // dd($exists,$exists->count());
+            if($exists->count()>1){
+                return back()->withError('Tiers already exist in this operation')->withInput(); 
+            }
             DetailOperation::create(
                 [
                     'key_tiers' => $request->input('key_tiers'),
